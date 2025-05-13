@@ -1,3 +1,22 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Медіа-плеєр</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <ion-segment [(ngModel)]="mediaType" (ionChange)="setMediaSource()">
+      <ion-segment-button [value]="MediaType.audio">Аудіо</ion-segment-button>
+      <ion-segment-button [value]="MediaType.video">Відео</ion-segment-button>
+    </ion-segment>
+
+    <div *ngIf="mediaType === MediaType.audio && mediaSrc" class="ion-margin-vertical">
+      <audio controls [src]="mediaSrc" style="width: 100%"></audio>
+    </div>
+
+    <div *ngIf="mediaType === MediaType.video && mediaSrc" class="ion-margin-vertical">
+      <video width="100%" controls [src]="mediaSrc"></video>
+    </div>
+  </ion-content>
 </ion-app>
